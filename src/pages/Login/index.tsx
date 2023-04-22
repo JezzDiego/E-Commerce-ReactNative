@@ -31,11 +31,18 @@ const LoginPage = () => {
         <MainText>Login</MainText>
       </Contaier>
       <LowerBox>
-        <TextFieldComponent placeholder="Email" handleValue={handleEmail} />
+        <TextFieldComponent
+          placeholder="Email"
+          handleValue={handleEmail}
+          autoCompleteType="email"
+          inputMode="email"
+        />
         <TextFieldComponent
           placeholder="Senha"
           handleValue={handlePassword}
           secureText
+          autoCompleteType="password"
+          inputMode="text"
         />
 
         <ButtonComponent title="Login" onPress={handlePress} />
