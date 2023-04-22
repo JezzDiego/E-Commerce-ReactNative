@@ -5,10 +5,15 @@ import { Input } from "./styles";
 
 type TextFieldProps = {
   placeholder: string;
+  secureText?: boolean;
   handleValue: (name: string) => void;
 };
 
-const TextFieldComponent = ({ placeholder, handleValue }: TextFieldProps) => {
+const TextFieldComponent = ({
+  placeholder,
+  handleValue,
+  secureText = false,
+}: TextFieldProps) => {
   const [value, setValue] = React.useState("");
 
   const handleChange = (
@@ -19,7 +24,13 @@ const TextFieldComponent = ({ placeholder, handleValue }: TextFieldProps) => {
   };
 
   return (
-    <Input placeholder={placeholder} value={value} onChange={handleChange} />
+    <Input
+      secureTextEntry={secureText}
+      placeholder={placeholder}
+      value={value}
+      onChange={handleChange}
+      autoCapitalize="none"
+    />
   );
 };
 

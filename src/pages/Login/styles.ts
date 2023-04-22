@@ -10,9 +10,10 @@ export const LowerBox = styled.View`
   background-color: #fff;
   width: 100%;
   height: 65%;
-  border-radius: 30px 30px;
   align-items: center;
   padding-top: 20%;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
 `;
 
 export const MainText = styled.Text`

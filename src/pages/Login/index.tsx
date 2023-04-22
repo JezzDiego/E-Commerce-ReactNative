@@ -13,7 +13,17 @@ const LoginPage = () => {
 
   const handlePassword = (value: string) => setPassword(value);
 
-  const handlePress = () => Alert.alert("Login", "Login efetuado com sucesso");
+  const handlePress = () => {
+    if (email.length && password.length > 0) {
+      if (password.length < 6) {
+        Alert.alert("Login", "A senha deve conter no mínimo 6 caracteres");
+      } else {
+        Alert.alert("Login", "Login efetuado com sucesso");
+      }
+    } else {
+      Alert.alert("Login", "Preencha todos os campos");
+    }
+  };
 
   return (
     <>
@@ -22,7 +32,11 @@ const LoginPage = () => {
       </Contaier>
       <LowerBox>
         <TextFieldComponent placeholder="Email" handleValue={handleEmail} />
-        <TextFieldComponent placeholder="Senha" handleValue={handlePassword} />
+        <TextFieldComponent
+          placeholder="Senha"
+          handleValue={handlePassword}
+          secureText
+        />
 
         <ButtonComponent title="Login" onPress={handlePress} />
       </LowerBox>
