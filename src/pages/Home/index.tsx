@@ -1,10 +1,13 @@
-import { View, Text } from "react-native";
+import { Contaier, Title } from "./styles";
+import Search from "../../components/Search";
 
 const HomePage = () => {
   return (
-    <View>
-      <Text>HomePage</Text>
-    </View>
+    <Contaier>
+      <Title>Produtos</Title>
+
+      <Search />
+    </Contaier>
   );
 };
 
