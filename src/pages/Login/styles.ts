@@ -3,6 +3,13 @@ import styled from "styled-components/native";
 export const Contaier = styled.View`
   flex: 1;
   align-items: center;
+  justify-content: flex-end;
+  background-color: #bbd6ff;
+`;
+
+export const UpperBox = styled.View`
+  flex: 1;
+  align-items: center;
   justify-content: center;
 `;
 

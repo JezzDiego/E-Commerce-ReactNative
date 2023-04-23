@@ -1,11 +1,12 @@
 import React from "react";
+import { StatusBar } from "expo-status-bar";
 
-import { Contaier, LowerBox, MainText } from "./styles";
+import { Contaier, LowerBox, UpperBox, MainText } from "./styles";
 import TextFieldComponent from "../../components/TextField";
 import ButtonComponent from "../../components/Button";
 import { Alert } from "react-native";
 
-const LoginPage = () => {
+const LoginPage = ({ navigation }: any) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -18,7 +19,7 @@ const LoginPage = () => {
       if (password.length < 6) {
         Alert.alert("Login", "A senha deve conter no mínimo 6 caracteres");
       } else {
-        Alert.alert("Login", "Login efetuado com sucesso");
+        navigation.push("Home");
       }
     } else {
       Alert.alert("Login", "Preencha todos os campos");
@@ -26,10 +27,12 @@ const LoginPage = () => {
   };
 
   return (
-    <>
-      <Contaier>
+    <Contaier>
+      <StatusBar style="auto" />
+      <UpperBox>
         <MainText>Login</MainText>
-      </Contaier>
+      </UpperBox>
+
       <LowerBox>
         <TextFieldComponent
           placeholder="Email"
@@ -37,6 +40,7 @@ const LoginPage = () => {
           autoCompleteType="email"
           inputMode="email"
         />
+
         <TextFieldComponent
           placeholder="Senha"
           handleValue={handlePassword}
@@ -47,7 +51,7 @@ const LoginPage = () => {
 
         <ButtonComponent title="Login" onPress={handlePress} />
       </LowerBox>
-    </>
+    </Contaier>
   );
 };
 
