@@ -47,9 +47,9 @@ const LoginPage = () => {
         <TextFieldComponent
           placeholder="Senha"
           handleValue={handlePassword}
-          secureText
           autoCompleteType="password"
           inputMode="text"
+          secureText
         />
 
         <ButtonComponent title="Login" onPress={handlePress} />
