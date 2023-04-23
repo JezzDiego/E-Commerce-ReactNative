@@ -5,8 +5,11 @@ import { Contaier, LowerBox, UpperBox, MainText } from "./styles";
 import TextFieldComponent from "../../components/TextField";
 import ButtonComponent from "../../components/Button";
 import { Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { StackTypes } from "../../config/routes/Navigation";
 
-const LoginPage = ({ navigation }: any) => {
+const LoginPage = () => {
+  const navigation = useNavigation<StackTypes>();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -19,7 +22,7 @@ const LoginPage = ({ navigation }: any) => {
       if (password.length < 6) {
         Alert.alert("Login", "A senha deve conter no mínimo 6 caracteres");
       } else {
-        navigation.push("Home");
+        navigation.replace("Home");
       }
     } else {
       Alert.alert("Login", "Preencha todos os campos");

@@ -1,12 +1,22 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 
 import LoginPage from "../../pages/Login";
 import HomePage from "../../pages/Home";
 
-const Navigation = () => {
-  const Stack = createNativeStackNavigator();
+type Stacknavigation = {
+  Login: undefined;
+  Home: undefined;
+};
 
+export type StackTypes = NativeStackNavigationProp<Stacknavigation>;
+
+const Stack = createNativeStackNavigator();
+
+const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
