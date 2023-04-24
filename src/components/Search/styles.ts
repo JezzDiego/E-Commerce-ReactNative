@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export const Container = styled.View`
   flex-direction: row;
@@ -9,7 +8,7 @@ export const Container = styled.View`
 
 export const Input = styled.TextInput`
   height: 40px;
-  width: 70%;
+  width: 80%;
   border-color: gray;
   border-width: 1px;
   border-radius: 5px;
@@ -19,7 +18,7 @@ export const Input = styled.TextInput`
   background-color: #f5f5f5;
 `;
 
-export const SearchIcon = styled(MaterialCommunityIcons)`
+export const SearchIcon = styled.View`
   position: absolute;
-  right: 10%;
+  right: 8%;
 `;

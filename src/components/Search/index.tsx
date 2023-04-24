@@ -1,10 +1,13 @@
 import { Input, SearchIcon, Container } from "./styles";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Search = () => {
   return (
     <Container>
       <Input placeholder="Pesquisar" />
-      <SearchIcon name="account-search" size={24} />
+      <SearchIcon>
+        <MaterialCommunityIcons name="shopping-search" size={24} />
+      </SearchIcon>
     </Container>
   );
 };

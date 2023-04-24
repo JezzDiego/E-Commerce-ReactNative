@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export const Container = styled.View`
   width: 100%;
@@ -18,7 +17,7 @@ export const Input = styled.TextInput`
   margin: 20px;
 `;
 
-export const EyeIcon = styled(MaterialCommunityIcons)`
+export const EyeIcon = styled.View`
   position: absolute;
   right: 19%;
 `;

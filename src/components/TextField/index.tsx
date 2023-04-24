@@ -6,6 +6,7 @@ import {
 } from "react-native";
 import { Input, Container, EyeIcon } from "./styles";
 import { AutoCompleteProps } from "./types";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 type TextFieldProps = {
   placeholder: string;
@@ -58,12 +59,14 @@ const TextFieldComponent = ({
         inputMode={inputMode}
       />
       {secureText && (
-        <EyeIcon
-          name={iconName}
-          size={24}
-          color="black"
-          onPress={handleIconName}
-        />
+        <EyeIcon>
+          <MaterialCommunityIcons
+            name={iconName}
+            size={24}
+            color="black"
+            onPress={handleIconName}
+          />
+        </EyeIcon>
       )}
     </Container>
   );
