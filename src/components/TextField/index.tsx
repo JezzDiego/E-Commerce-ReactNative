@@ -27,7 +27,7 @@ const TextFieldComponent = ({
 }: TextFieldProps) => {
   const [value, setValue] = React.useState("");
   const [secureTextEntry, setSecureTextEntry] = React.useState(secureText);
-  const [iconName, setIconName] = React.useState<IconName>("eye");
+  const [iconName, setIconName] = React.useState<IconName>("eye-off");
 
   const handleChange = (
     event: NativeSyntheticEvent<TextInputChangeEventData>
@@ -39,10 +39,10 @@ const TextFieldComponent = ({
   const handleIconName = () => {
     if (iconName === "eye") {
       setIconName("eye-off");
-      setSecureTextEntry(false);
+      setSecureTextEntry(true);
     } else {
       setIconName("eye");
-      setSecureTextEntry(true);
+      setSecureTextEntry(false);
     }
   };
 
