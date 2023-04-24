@@ -21,6 +21,8 @@ const LoginPage = () => {
     if (email.length && password.length > 0) {
       if (password.length < 6) {
         Alert.alert("Login", "A senha deve conter no mínimo 6 caracteres");
+      } else if (!email.includes("@")) {
+        Alert.alert("Login", "Email inválido");
       } else {
         navigation.replace("Home");
       }
