@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 export const Container = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  margin-top: 10px;
 `;
 
 export const Input = styled.TextInput`
