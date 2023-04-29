@@ -24,7 +24,7 @@ const LoginPage = () => {
       } else if (!email.includes("@")) {
         Alert.alert("Login", "Email inválido");
       } else {
-        navigation.replace("Home");
+        navigation.replace("Default");
       }
     } else {
       Alert.alert("Login", "Preencha todos os campos");

@@ -5,34 +5,27 @@ import {
 } from "@react-navigation/native-stack";
 
 import LoginPage from "../../pages/Login";
-import HomePage from "../../pages/Home";
+import Default from "../../pages/Default";
 
 type Stacknavigation = {
   Login: undefined;
-  Home: undefined;
+  Default: undefined;
 };
 
 export type StackTypes = NativeStackNavigationProp<Stacknavigation>;
 
 const Stack = createNativeStackNavigator();
 
-const Navigation = () => {
+export const StackNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Login"
-          component={LoginPage}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomePage}
-          options={{ headerShown: false }}
-        />
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="Default" component={Default} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-export default Navigation;
