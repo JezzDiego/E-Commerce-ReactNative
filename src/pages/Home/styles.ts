@@ -14,6 +14,7 @@ export const Title = styled.Text`
   color: #333;
   margin: 20px;
   font-weight: bold;
+  text-align: center;
 `;
 
 export const ProductList = styled(
@@ -21,4 +22,8 @@ export const ProductList = styled(
 )`
   flex: 1;
   width: 100%;
+`;
+
+export const ProductFooter = styled.View`
+  margin: 10px;
 `;

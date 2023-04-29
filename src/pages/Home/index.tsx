@@ -1,5 +1,5 @@
 import React from "react";
-import { Contaier, Title, ProductList } from "./styles";
+import { Contaier, Title, ProductList, ProductFooter } from "./styles";
 import ProductCard from "../../components/ProductCard";
 import Search from "../../components/Search";
 import { ProductProps } from "../../@types/products";
@@ -58,8 +58,13 @@ const HomePage = () => {
   return (
     <Contaier>
       <Search />
-      <Title>Produtos</Title>
-      <ProductList data={products} numColumns={2} renderItem={renderItem} />
+      <ProductList
+        data={products}
+        numColumns={2}
+        renderItem={renderItem}
+        ListHeaderComponent={<Title>Produtos</Title>}
+        ListFooterComponent={ProductFooter}
+      />
     </Contaier>
   );
 };

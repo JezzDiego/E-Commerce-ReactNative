@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
   border-radius: 8px;
-  margin: 10px;
+  margin: 5px;
   border: 1px solid gray;
   flex: 1;
 `;
@@ -19,7 +19,7 @@ export const ProductSection1 = styled.View`
 export const ProductSection2 = styled.View`
   justify-content: space-between;
   flex-direction: row;
-  margin: 10px;
+  margin: 5px;
 `;
 
 export const ProductName = styled.Text`
