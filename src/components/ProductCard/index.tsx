@@ -1,5 +1,4 @@
 import React from "react";
-import { ProductProps } from "../../@types/products";
 import { AntDesign } from "@expo/vector-icons";
 import {
   Container,
@@ -9,13 +8,28 @@ import {
   ProductSection2,
   LowerInfo,
 } from "./styles";
+import { StackTypes } from "../../config/routes/Navigation";
+import { useNavigation } from "@react-navigation/native";
+
+import { ProductProps } from "../../@types/products";
 
 const ProductCard = ({ id, name, price, description, image }: ProductProps) => {
+  const navigation = useNavigation<StackTypes>();
   const [like, setLike] = React.useState(false);
   const handlePress = () => setLike(!like);
 
+  const productInfos = () => {
+    navigation.navigate("ProductInfos", {
+      id,
+      name,
+      image,
+      price,
+      description,
+    });
+  };
+
   return (
-    <Container>
+    <Container onPress={productInfos}>
       <Image source={image} />
       <ProductSection1>
         <ProductName>
