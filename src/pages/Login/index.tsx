@@ -1,62 +1,157 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-
-import { Contaier, LowerBox, UpperBox, MainText } from "./styles";
-import TextFieldComponent from "../../components/TextField";
-import ButtonComponent from "../../components/Button";
-import { Alert } from "react-native";
+import React, { useCallback, useState } from "react";
+import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
+import { useFonts } from "expo-font";
 import { useNavigation } from "@react-navigation/native";
 import { StackTypes } from "../../config/routes/Navigation";
+import {
+  Box,
+  Button,
+  FormControl,
+  Icon,
+  Input,
+  Pressable,
+  Stack,
+  Text,
+  WarningOutlineIcon,
+} from "native-base";
+import {
+  emailvalidation,
+  passwordvalidation,
+} from "../../functions/validation";
+import { MaterialIcons } from "@expo/vector-icons";
+import * as SplashScreen from "expo-splash-screen";
+
+SplashScreen.preventAutoHideAsync();
 
 const LoginPage = () => {
+  //hooks
   const navigation = useNavigation<StackTypes>();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = useState("exemplo@email.com");
+  const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
 
-  const handleEmail = (value: string) => setEmail(value);
+  //loading fonts
+  const [fontsLoaded] = useFonts({
+    "Poppins-Regular": require("../../assets/fonts/Poppins/Poppins-Regular.ttf"),
+  });
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+  if (!fontsLoaded) {
+    return null;
+  }
 
-  const handlePassword = (value: string) => setPassword(value);
+  //functions
+  const handleEmail = (e: NativeSyntheticEvent<TextInputChangeEventData>) =>
+    setEmail(e.nativeEvent.text);
+
+  const handlePassword = (e: NativeSyntheticEvent<TextInputChangeEventData>) =>
+    setPassword(e.nativeEvent.text);
 
   const handlePress = () => {
-    if (email.length && password.length > 0) {
-      if (password.length < 6) {
-        Alert.alert("Login", "A senha deve conter no mínimo 6 caracteres");
-      } else if (!email.includes("@")) {
-        Alert.alert("Login", "Email inválido");
-      } else {
-        navigation.replace("Default");
-      }
-    } else {
-      Alert.alert("Login", "Preencha todos os campos");
+    if (emailvalidation(email) && passwordvalidation(password)) {
+      navigation.replace("Default");
     }
   };
 
   return (
-    <Contaier>
-      <StatusBar style="auto" />
-      <UpperBox>
-        <MainText>Login</MainText>
-      </UpperBox>
+    <Box
+      flex={1}
+      bgColor="#bbd6ff"
+      alignItems="flex-start"
+      justifyContent="space-between"
+      onLayout={onLayoutRootView}
+      safeArea
+    >
+      <Text
+        fontSize="32"
+        color="white"
+        letterSpacing={2}
+        maxWidth={210}
+        mx={6}
+        my={12}
+        fontFamily="Poppins-Regular"
+      >
+        Bem-vindo{"\n"}de volta!
+      </Text>
 
-      <LowerBox>
-        <TextFieldComponent
-          placeholder="Email"
-          handleValue={handleEmail}
-          autoCompleteType="email"
-          inputMode="email"
-        />
+      <Box px={8} py={14} borderTopRadius={20} bgColor="white" w="100%">
+        <FormControl isRequired isInvalid={!emailvalidation(email)} my={6}>
+          <Stack space={2}>
+            <FormControl.Label>Email</FormControl.Label>
+            <Input
+              type="text"
+              placeholder="Digite seu email"
+              value={email}
+              onChange={handleEmail}
+              autoCapitalize="none"
+              onPressIn={() => setEmail("")}
+              InputRightElement={
+                <Icon
+                  as={<MaterialIcons name="person" />}
+                  size={5}
+                  mr="2"
+                  color="muted.600"
+                />
+              }
+            />
+            <FormControl.ErrorMessage
+              leftIcon={<WarningOutlineIcon size="xs" />}
+            >
+              Informe um email válido.
+            </FormControl.ErrorMessage>
+          </Stack>
+        </FormControl>
 
-        <TextFieldComponent
-          placeholder="Senha"
-          handleValue={handlePassword}
-          autoCompleteType="password"
-          inputMode="text"
-          secureText
-        />
+        <FormControl
+          isRequired
+          isInvalid={!passwordvalidation(password)}
+          my={4}
+        >
+          <Stack space={2}>
+            <FormControl.Label>Senha</FormControl.Label>
+            <Input
+              type="password"
+              placeholder="Digite sua senha"
+              secureTextEntry={!show}
+              value={password}
+              onChange={handlePassword}
+              InputRightElement={
+                <Pressable onPress={() => setShow(!show)}>
+                  <Icon
+                    as={
+                      <MaterialIcons
+                        name={show ? "visibility" : "visibility-off"}
+                      />
+                    }
+                    size={5}
+                    mr="2"
+                    color="muted.600"
+                  />
+                </Pressable>
+              }
+            />
+          </Stack>
+          <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+            Informe uma senha válida.
+          </FormControl.ErrorMessage>
+        </FormControl>
 
-        <ButtonComponent title="Login" onPress={handlePress} />
-      </LowerBox>
-    </Contaier>
+        <Button
+          colorScheme="tertiary"
+          _text={{
+            fontSize: "lg",
+            fontWeight: "bold",
+          }}
+          mt="1/2"
+          onPress={handlePress}
+        >
+          Login
+        </Button>
+      </Box>
+    </Box>
   );
 };
 

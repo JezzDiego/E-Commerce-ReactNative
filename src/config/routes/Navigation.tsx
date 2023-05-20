@@ -4,11 +4,10 @@ import {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import { ProductProps } from "../../@types/products";
-import { AntDesign } from "@expo/vector-icons";
 
 import LoginPage from "../../pages/Login";
 import Default from "../../pages/Default";
-import ProductInfos from "../../components/@pages/ProductInfos";
+import ProductInfos from "../../components/ProductInfos";
 
 type Stacknavigation = {
   Login: undefined;
@@ -24,7 +23,7 @@ export const StackNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Default"
+        initialRouteName="Login"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Login" component={LoginPage} />

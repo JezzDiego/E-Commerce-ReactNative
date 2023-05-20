@@ -1,4 +1,4 @@
-import { ProductProps } from "../../../@types/products";
+import { ProductProps } from "../../@types/products";
 import { RouteProp, useRoute } from "@react-navigation/native";
 
 import {
