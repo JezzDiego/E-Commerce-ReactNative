@@ -26,7 +26,7 @@ SplashScreen.preventAutoHideAsync();
 const LoginPage = () => {
   //hooks
   const navigation = useNavigation<StackTypes>();
-  const [email, setEmail] = useState("exemplo@email.com");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
 
@@ -71,14 +71,18 @@ const LoginPage = () => {
         letterSpacing={2}
         maxWidth={210}
         mx={6}
-        my={12}
+        mt="25%"
         fontFamily="Poppins-Regular"
       >
         Bem-vindo{"\n"}de volta!
       </Text>
 
       <Box px={8} py={14} borderTopRadius={20} bgColor="white" w="100%">
-        <FormControl isRequired isInvalid={!emailvalidation(email)} my={6}>
+        <FormControl
+          isRequired
+          isInvalid={email.length > 0 && !emailvalidation(email)}
+          my={6}
+        >
           <Stack space={2}>
             <FormControl.Label>Email</FormControl.Label>
             <Input
@@ -107,7 +111,7 @@ const LoginPage = () => {
 
         <FormControl
           isRequired
-          isInvalid={!passwordvalidation(password)}
+          isInvalid={password.length > 0 && !passwordvalidation(password)}
           my={4}
         >
           <Stack space={2}>
@@ -115,6 +119,7 @@ const LoginPage = () => {
             <Input
               type="password"
               placeholder="Digite sua senha"
+              autoCapitalize="none"
               secureTextEntry={!show}
               value={password}
               onChange={handlePassword}
@@ -146,6 +151,7 @@ const LoginPage = () => {
             fontWeight: "bold",
           }}
           mt="1/2"
+          mb={6}
           onPress={handlePress}
         >
           Login
