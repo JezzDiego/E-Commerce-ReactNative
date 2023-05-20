@@ -52,9 +52,7 @@ const LoginPage = () => {
     setPassword(e.nativeEvent.text);
 
   const handlePress = () => {
-    if (emailvalidation(email) && passwordvalidation(password)) {
-      navigation.replace("Default");
-    }
+    navigation.replace("Default");
   };
 
   return (
@@ -148,7 +146,12 @@ const LoginPage = () => {
           </FormControl>
 
           <Button
-            colorScheme="tertiary"
+            disabled={!(emailvalidation(email) && passwordvalidation(password))}
+            colorScheme={
+              !(emailvalidation(email) && passwordvalidation(password))
+                ? "gray"
+                : "tertiary"
+            }
             _text={{
               fontSize: "lg",
               fontWeight: "bold",
