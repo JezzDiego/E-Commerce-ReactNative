@@ -90,7 +90,6 @@ const LoginPage = () => {
                 value={email}
                 onChange={handleEmail}
                 autoCapitalize="none"
-                onPressIn={() => setEmail("")}
                 InputRightElement={
                   <Icon
                     as={<MaterialIcons name="person" />}
