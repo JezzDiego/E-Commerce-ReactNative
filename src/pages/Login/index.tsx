@@ -10,6 +10,7 @@ import {
   Icon,
   Input,
   Pressable,
+  ScrollView,
   Stack,
   Text,
   WarningOutlineIcon,
@@ -57,107 +58,109 @@ const LoginPage = () => {
   };
 
   return (
-    <Box
-      flex={1}
-      bgColor="#bbd6ff"
-      alignItems="flex-start"
-      justifyContent="space-between"
-      onLayout={onLayoutRootView}
-      safeArea
-    >
-      <Text
-        fontSize="32"
-        color="white"
-        letterSpacing={2}
-        maxWidth={210}
-        mx={6}
-        mt="25%"
-        fontFamily="Poppins-Regular"
+    <ScrollView flex={1} bgColor="white">
+      <Box
+        bgColor="#bbd6ff"
+        alignItems="flex-start"
+        justifyContent="space-between"
+        onLayout={onLayoutRootView}
+        safeArea
       >
-        Bem-vindo{"\n"}de volta!
-      </Text>
-
-      <Box px={8} py={14} borderTopRadius={20} bgColor="white" w="100%">
-        <FormControl
-          isRequired
-          isInvalid={email.length > 0 && !emailvalidation(email)}
-          my={6}
+        <Text
+          fontSize="32"
+          color="white"
+          letterSpacing={2}
+          maxWidth={210}
+          mx={6}
+          my="25%"
+          fontFamily="Poppins-Regular"
         >
-          <Stack space={2}>
-            <FormControl.Label>Email</FormControl.Label>
-            <Input
-              type="text"
-              placeholder="Digite seu email"
-              value={email}
-              onChange={handleEmail}
-              autoCapitalize="none"
-              onPressIn={() => setEmail("")}
-              InputRightElement={
-                <Icon
-                  as={<MaterialIcons name="person" />}
-                  size={5}
-                  mr="2"
-                  color="muted.600"
-                />
-              }
-            />
-            <FormControl.ErrorMessage
-              leftIcon={<WarningOutlineIcon size="xs" />}
-            >
-              Informe um email válido.
-            </FormControl.ErrorMessage>
-          </Stack>
-        </FormControl>
+          Bem-vindo{"\n"}de volta!
+        </Text>
 
-        <FormControl
-          isRequired
-          isInvalid={password.length > 0 && !passwordvalidation(password)}
-          my={4}
-        >
-          <Stack space={2}>
-            <FormControl.Label>Senha</FormControl.Label>
-            <Input
-              type="password"
-              placeholder="Digite sua senha"
-              autoCapitalize="none"
-              secureTextEntry={!show}
-              value={password}
-              onChange={handlePassword}
-              InputRightElement={
-                <Pressable onPress={() => setShow(!show)}>
+        <Box px={8} py={14} borderTopRadius={20} bgColor="white" w="100%">
+          <FormControl
+            isRequired
+            isInvalid={email.length > 0 && !emailvalidation(email)}
+            my={6}
+          >
+            <Stack space={2}>
+              <FormControl.Label>Email</FormControl.Label>
+              <Input
+                type="text"
+                placeholder="Digite seu email"
+                value={email}
+                onChange={handleEmail}
+                autoCapitalize="none"
+                onPressIn={() => setEmail("")}
+                InputRightElement={
                   <Icon
-                    as={
-                      <MaterialIcons
-                        name={show ? "visibility" : "visibility-off"}
-                      />
-                    }
+                    as={<MaterialIcons name="person" />}
                     size={5}
                     mr="2"
                     color="muted.600"
                   />
-                </Pressable>
-              }
-            />
-          </Stack>
-          <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-            Informe uma senha válida.
-          </FormControl.ErrorMessage>
-        </FormControl>
+                }
+              />
+              <FormControl.ErrorMessage
+                leftIcon={<WarningOutlineIcon size="xs" />}
+              >
+                Informe um email válido.
+              </FormControl.ErrorMessage>
+            </Stack>
+          </FormControl>
 
-        <Button
-          colorScheme="tertiary"
-          _text={{
-            fontSize: "lg",
-            fontWeight: "bold",
-          }}
-          mt="1/2"
-          mb={6}
-          onPress={handlePress}
-        >
-          Login
-        </Button>
+          <FormControl
+            isRequired
+            isInvalid={password.length > 0 && !passwordvalidation(password)}
+            my={4}
+          >
+            <Stack space={2}>
+              <FormControl.Label>Senha</FormControl.Label>
+              <Input
+                type="password"
+                placeholder="Digite sua senha"
+                autoCapitalize="none"
+                secureTextEntry={!show}
+                value={password}
+                onChange={handlePassword}
+                InputRightElement={
+                  <Pressable onPress={() => setShow(!show)}>
+                    <Icon
+                      as={
+                        <MaterialIcons
+                          name={show ? "visibility" : "visibility-off"}
+                        />
+                      }
+                      size={5}
+                      mr="2"
+                      color="muted.600"
+                    />
+                  </Pressable>
+                }
+              />
+            </Stack>
+            <FormControl.ErrorMessage
+              leftIcon={<WarningOutlineIcon size="xs" />}
+            >
+              Informe uma senha válida.
+            </FormControl.ErrorMessage>
+          </FormControl>
+
+          <Button
+            colorScheme="tertiary"
+            _text={{
+              fontSize: "lg",
+              fontWeight: "bold",
+            }}
+            mt="1/2"
+            onPress={handlePress}
+          >
+            Login
+          </Button>
+        </Box>
       </Box>
-    </Box>
+    </ScrollView>
   );
 };
 
