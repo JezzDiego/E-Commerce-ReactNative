@@ -1,7 +1,7 @@
 import React from "react";
-import { Contaier, Title, ProductList, ProductFooter } from "./styles";
+import { Box, FlatList, Icon, Input, Text } from "native-base";
+import { MaterialIcons } from "@expo/vector-icons";
 import ProductCard from "../../components/ProductCard";
-import Search from "../../components/Search";
 import { ProductProps } from "../../@types/products";
 import { ListRenderItem } from "react-native";
 
@@ -56,16 +56,32 @@ const HomePage = () => {
   );
 
   return (
-    <Contaier>
-      <Search />
-      <ProductList
+    <Box flex={1} bgColor="white" safeArea>
+      <Input
+        type="text"
+        placeholder="Faça a sua busca"
+        InputRightElement={
+          <Icon
+            as={<MaterialIcons name="search" />}
+            size={8}
+            mr="2"
+            color="muted.600"
+          />
+        }
+        mx={2}
+      />
+      <FlatList
         data={products}
         numColumns={2}
         renderItem={renderItem}
-        ListHeaderComponent={<Title>Produtos</Title>}
-        ListFooterComponent={ProductFooter}
+        ListHeaderComponent={
+          <Text textAlign="center" fontSize={26} my={4} bold>
+            Produtos
+          </Text>
+        }
+        showsVerticalScrollIndicator={false}
       />
-    </Contaier>
+    </Box>
   );
 };
 
