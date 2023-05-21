@@ -34,6 +34,7 @@ const LoginPage = () => {
   //loading fonts
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins/Poppins-Regular.ttf"),
+    "Poppins-Bold": require("../../assets/fonts/Poppins/Poppins-Bold.ttf"),
   });
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -56,12 +57,13 @@ const LoginPage = () => {
   };
 
   return (
-    <ScrollView flex={1} bgColor="white">
+    <ScrollView bgColor="white" showsVerticalScrollIndicator={false}>
       <Box
         bgColor="#bbd6ff"
         alignItems="flex-start"
         justifyContent="space-between"
         onLayout={onLayoutRootView}
+        flex={1}
         safeArea
       >
         <Text
@@ -70,13 +72,25 @@ const LoginPage = () => {
           letterSpacing={2}
           maxWidth={210}
           mx={6}
-          my="25%"
+          mt="15%"
           fontFamily="Poppins-Regular"
         >
           Bem-vindo{"\n"}de volta!
         </Text>
 
-        <Box px={8} py={14} borderTopRadius={20} bgColor="white" w="100%">
+        <Text
+          fontSize="16"
+          color="white"
+          letterSpacing={2}
+          mx={6}
+          mt={2}
+          mb={12}
+          fontFamily="Poppins-Bold"
+        >
+          Faça login para continuar.
+        </Text>
+
+        <Box px={8} borderTopRadius={20} bgColor="white" w="100%" height="100%">
           <FormControl
             isRequired
             isInvalid={email.length > 0 && !emailvalidation(email)}
