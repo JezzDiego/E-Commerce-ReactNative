@@ -7,7 +7,7 @@ import { ProductProps } from "../../@types/products";
 
 import LoginPage from "../../pages/Login";
 import Default from "../../pages/Default";
-import ProductInfos from "../../components/ProductInfos";
+import ProductInfo from "../../components/ProductInfo";
 
 type Stacknavigation = {
   Login: undefined;
@@ -30,14 +30,14 @@ export const StackNavigation = () => {
         <Stack.Screen name="Default" component={Default} />
         <Stack.Screen
           name="ProductInfos"
-          component={ProductInfos}
+          component={ProductInfo}
           options={{
             headerShown: true,
             headerTitle: "Detalhes do produto",
             headerStyle: {
-              backgroundColor: "#4287f5",
+              backgroundColor: "#fee440",
             },
-            headerTintColor: "#fff",
+            headerTintColor: "#000",
           }}
         />
       </Stack.Navigator>
