@@ -69,6 +69,7 @@ const HomePage = () => {
           />
         }
         mx={2}
+        mt={2}
       />
       <FlatList
         data={products}
