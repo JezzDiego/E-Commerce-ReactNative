@@ -8,11 +8,11 @@ import { Pressable, Image, Box, Text } from "native-base";
 const ProductCard = ({ id, name, price, description, image }: ProductProps) => {
   const navigation = useNavigation<StackTypes>();
 
-  const formattedNumber = () => {
+  const formatNumber = (num: number) => {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
-    }).format(price);
+    }).format(num);
   };
 
   const productInfos = () => {
@@ -42,7 +42,11 @@ const ProductCard = ({ id, name, price, description, image }: ProductProps) => {
             {name} #{id}
           </Text>
 
-          <Text fontSize={16}>{formattedNumber()}</Text>
+          <Text fontSize={16}>{formatNumber(price)}</Text>
+
+          <Text color="green.400">
+            Em 10x de {formatNumber(price / 10)} sem juros
+          </Text>
 
           <Text fontSize={16} color="green.400">
             Frete Grátis
