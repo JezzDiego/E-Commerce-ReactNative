@@ -73,7 +73,7 @@ const HomePage = () => {
       />
       <FlatList
         data={products}
-        numColumns={2}
+        numColumns={1}
         renderItem={renderItem}
         ListHeaderComponent={
           <Text textAlign="center" fontSize={26} my={4} bold>

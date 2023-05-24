@@ -1,6 +1,5 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
-import { useFonts } from "expo-font";
 import { useNavigation } from "@react-navigation/native";
 import { StackTypes } from "../../config/routes/Navigation";
 import {
@@ -20,9 +19,6 @@ import {
   passwordvalidation,
 } from "../../functions/validation";
 import { MaterialIcons } from "@expo/vector-icons";
-import * as SplashScreen from "expo-splash-screen";
-
-SplashScreen.preventAutoHideAsync();
 
 const LoginPage = () => {
   //hooks
@@ -30,20 +26,6 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
-
-  //loading fonts
-  const [fontsLoaded] = useFonts({
-    "Poppins-Regular": require("../../assets/fonts/Poppins/Poppins-Regular.ttf"),
-    "Poppins-Bold": require("../../assets/fonts/Poppins/Poppins-Bold.ttf"),
-  });
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-  if (!fontsLoaded) {
-    return null;
-  }
 
   //functions
   const handleEmail = (e: NativeSyntheticEvent<TextInputChangeEventData>) =>
@@ -62,7 +44,6 @@ const LoginPage = () => {
         bgColor="#bbd6ff"
         alignItems="flex-start"
         justifyContent="space-between"
-        onLayout={onLayoutRootView}
         flex={1}
         safeArea
       >

@@ -1,5 +1,4 @@
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
 import { StackTypes } from "../config/routes/Navigation";
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,8 +7,13 @@ import { Pressable, Image, Box, Text } from "native-base";
 
 const ProductCard = ({ id, name, price, description, image }: ProductProps) => {
   const navigation = useNavigation<StackTypes>();
-  const [like, setLike] = React.useState(false);
-  const handlePress = () => setLike(!like);
+
+  const formattedNumber = () => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(price);
+  };
 
   const productInfos = () => {
     navigation.navigate("ProductInfos", {
@@ -27,33 +31,22 @@ const ProductCard = ({ id, name, price, description, image }: ProductProps) => {
       m={2}
       onPress={productInfos}
       borderRadius={10}
-      borderWidth={1}
+      borderWidth={2}
+      borderStyle={"dashed"}
+      borderColor="gray.300"
     >
-      <Image
-        width="100%"
-        borderTopRadius={10}
-        source={image}
-        alt="item image"
-      />
-      <Box flexDir="row" justifyContent="center">
-        <Text fontSize={18} bold>
-          {name} #{id}
-        </Text>
-      </Box>
+      <Box flexDir="row">
+        <Image source={image} alt="item image" />
+        <Box justifyContent="space-between" flex={1} p={3}>
+          <Text fontSize={18} bold>
+            {name} #{id}
+          </Text>
 
-      <Box px={2}>
-        <Box flexDir="row" justifyContent="space-between">
-          <Text fontSize={16}>R$ {price}</Text>
-          <AntDesign
-            name={like ? "heart" : "hearto"}
-            color={like ? "red" : "black"}
-            size={20}
-            onPress={handlePress}
-          />
-        </Box>
+          <Text fontSize={16}>{formattedNumber()}</Text>
 
-        <Box my={2}>
-          <Text fontSize={16}>{description}</Text>
+          <Text fontSize={16} color="green.400">
+            Frete Grátis
+          </Text>
         </Box>
       </Box>
     </Pressable>
