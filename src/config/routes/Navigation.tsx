@@ -23,7 +23,7 @@ export const StackNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Default"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Login" component={LoginPage} />
